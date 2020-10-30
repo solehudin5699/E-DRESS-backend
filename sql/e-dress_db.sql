@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Okt 2020 pada 02.33
+-- Waktu pembuatan: 30 Okt 2020 pada 19.49
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.7
 
@@ -85,7 +85,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `name`, `description`, `price`, `stock`, `image`, `create_date`, `change_date`, `category_id`) VALUES
-(1, 'Odza Classic Kemeja Batik', 'Spesifikasi Produk:1. Bahan 100% KATUN. Halus, adem, sejuk, nyaman di kulit dan menyerap keringat.2. Teknik PRINT kualitas PREMIUM untuk Hem Batik yang awet, tidak luntur, tidak menciut dan tidak transparant.3. Potongan kemeja SLIMFIT yang menyesuaikan bentuk badan memberikan kesan modern.4. Motif Batik Print yang Unik ORISINAL dan dibuat dengan jumlah yang sangat TERBATAS (1 Motif hanya diproduksi 1 kali).Referensi Ukuran Model yang di foto:Ukuran Baju: XLTinggi: 185 cm Berat: 78kg Lingkar Dada: 96 cm', '125000', 100, '/images/1599989447739-image.PNG', '2020-09-13 08:50:35', '2020-09-13 19:20:41', 1),
+(1, 'Odza Classic Kemeja Batik', 'Spesifikasi Produk:1. Bahan 100% KATUN. Halus, adem, sejuk, nyaman di kulit dan menyerap keringat.2. Teknik PRINT kualitas PREMIUM untuk Hem Batik yang awet, tidak luntur, tidak menciut dan tidak transparant.3. Potongan kemeja SLIMFIT yang menyesuaikan bentuk badan memberikan kesan modern.4. Motif Batik Print yang Unik ORISINAL dan dibuat dengan jumlah yang sangat TERBATAS (1 Motif hanya diproduksi 1 kali).Referensi Ukuran Model yang di foto:Ukuran Baju: XLTinggi: 185 cm Berat: 78kg Lingkar Dada: 96 cm', '125000', 100, '/images/1599989447739-image.PNG', '2020-09-13 08:50:35', '2020-10-30 11:35:42', 1),
 (2, 'Odza Classic Kemeja Batik Lengan Merah', 'Lengan Panjang Merah A - M-Spesifikasi Produk:1. Bahan 100% KATUN. Halus, adem, sejuk, nyaman di kulit dan menyerap keringat.2. Teknik PRINT kualitas PREMIUM untuk Hem Batik yang awet, tidak luntur, tidak menciut dan tidak transparant.3. Potongan kemeja SLIMFIT yang menyesuaikan bentuk badan memberikan kesan modern.4. Motif Batik Print yang Unik ORISINAL dan dibuat dengan jumlah yang sangat TERBATAS (1 Motif hanya diproduksi 1 kali).Referensi Ukuran Model yang di foto:Ukuran Baju: XLTinggi: 185 cm Berat: 78kg Lingkar Dada: 96 cm', '120000', 100, '/images/1599989712536-image.PNG', '2020-09-13 09:35:12', '2020-09-13 19:21:34', 1),
 (3, 'NK BATIK KEMEJA BATIK PRIA LENGAN PANJANG TIO FURING JUMBO - Hijau, M', 'Bahan cotton HQ,original prodak ,Lapis furing,Kancing depan,Ada saku ,Varian prodak,Merah,Hijau,Biru ', '90000', 50, '/images/1599989909396-image.PNG', '2020-09-13 09:38:29', '2020-09-13 19:21:50', 1),
 (4, 'Kemeja Batik pria lengan panjang SE05', 'Bahan:100% tidak luntur,Katun adem menyerap keringat dan nyaman dipakai,Reguler fit,Tanpa furing', '50000', 30, '/images/1599990096192-image.PNG', '2020-09-13 09:41:36', '2020-09-13 19:22:27', 1),
@@ -104,19 +104,13 @@ INSERT INTO `products` (`product_id`, `name`, `description`, `price`, `stock`, `
 
 CREATE TABLE `transaction` (
   `transaction_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `detail_order` varchar(255) NOT NULL,
+  `products` varchar(2000) NOT NULL,
+  `total_item` varchar(255) NOT NULL,
+  `price_item` varchar(255) NOT NULL,
   `totalprice` decimal(10,0) NOT NULL,
   `transaction_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `transaction`
---
-
-INSERT INTO `transaction` (`transaction_id`, `product_id`, `user_id`, `detail_order`, `totalprice`, `transaction_date`) VALUES
-(1, 0, 2, '{order:[\"Kentang\", \"Oncom\"], quantity:[1,3],price:[100,2000]}', '23000', '2020-09-21 02:40:22');
 
 -- --------------------------------------------------------
 
@@ -141,7 +135,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `name`, `username`, `email`, `password`, `level_id`, `image`, `register_date`) VALUES
 (1, 'SOLEHUDIN', 'solehudin1', 'solehudin1@surel.co.id', '$2b$10$kdYaAkSMuYc.90yjiSr2BemmvY15Yw4SyR4B6x3pXLmQIB0zBzK3m', 1, '', '2020-09-13 06:06:15'),
-(2, 'Solehudin', 'solehudin2', 'solehudin2', '$2b$10$bVWGyxM2nkRjQBftCQ/Jd.SqjgSMWr8guhGLAJlSscDGc1g5wkod.', 2, '', '2020-09-14 02:04:18'),
+(2, 'Solehudin', 'solehudin2', 'solehudin2@gemail.com', '$2b$10$bVWGyxM2nkRjQBftCQ/Jd.SqjgSMWr8guhGLAJlSscDGc1g5wkod.', 2, '', '2020-09-14 02:04:18'),
 (3, 'Solehudin', 'solehudin3', 'solehudin3', '$2b$10$g8mJa6I.6UgkgFqrBZhs5.Q0yhcszQ1m0xuZ0a.KQ6UyZwJKDsd0C', 2, '', '2020-09-14 02:13:24'),
 (4, 'Solehudin', 'solehudin4', 'solehudin4', '$2b$10$pT63ABnFTFlWtd14oi3LSO4wM6K0cU6yFttNjSwEZldwQK4fbdl2a', 2, '', '2020-09-14 02:16:28'),
 (5, 'Solehudin', 'solehudin5', 'solehudin5', '$2b$10$J6PFTKfcl/vLW8FhzXKZJOkhCuYBgNH1YCrI1jMK.TrAFgTlaXwli', 2, '', '2020-09-14 02:18:36'),
@@ -151,7 +145,8 @@ INSERT INTO `users` (`user_id`, `name`, `username`, `email`, `password`, `level_
 (9, 'Solehudin', 'solehudin8', 'solehudin8@surel.com', '$2b$10$Uud3WK/vZsuK24/f/KimE.t8GJ2TCCHAhExZ24r5/ynddiXhvu5H.', 2, '', '2020-09-17 17:39:17'),
 (10, 'Solehudin', 'solehudin9', 'solehudin9@surel.com', '$2b$10$i1OCKoKbfrflpG99ssDhquJ0m37gbquvXI9VCs8FdcZpKhwOIagoq', 2, '/images/1600752938708-image.PNG', '2020-09-17 17:41:56'),
 (11, 'Solehudin', 'solehudin11', 'solehudin11@surel.com', '$2b$10$2y3Knpp/nXVIYRKYmGXV1uBVEFHS4ZKQX2krwTn4rKSRObtLqgb3m', 2, '', '2020-09-17 17:44:34'),
-(12, 'Solehudin', 'solehudin12', 'solehudin12@gemail.com', '$2b$10$u3ph78TxTCMFQVQd2o/4N.erzV.eQY2KxeVuFaVhNKXOrQzspnY/y', 2, '', '2020-09-22 17:44:21');
+(12, 'Solehudin', 'solehudin12', 'solehudin12@gemail.com', '$2b$10$u3ph78TxTCMFQVQd2o/4N.erzV.eQY2KxeVuFaVhNKXOrQzspnY/y', 2, '', '2020-09-22 17:44:21'),
+(13, 'Solehudin', 'solehudin99', 'solehudin@gemail.com', '$2b$10$B5XMIz4fq/Vy6Zz7SFd6y.gMoJHShKydce.HXq/biMupHmSHJh3QS', 2, '', '2020-10-30 18:39:04');
 
 --
 -- Indexes for dumped tables
@@ -189,13 +184,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT untuk tabel `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
