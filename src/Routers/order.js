@@ -7,6 +7,6 @@ const checkToken = require("../Helpers/Middleware/checkToken");
 orderRouter.post("/", orderController.postOrder);
 //Read method
 orderRouter.get("/", orderController.getAllOrder);
-
+orderRouter.get("/:id", orderController.getOrderByCustomer);
 //export
 module.exports = orderRouter;

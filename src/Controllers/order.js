@@ -18,7 +18,17 @@ const orderController = {
     orderModel
       .getAllOrder()
       .then((result) => {
-        responseResult.getSuccess(res, result);
+        responseResult.getOrderSuccess(res, result);
+      })
+      .catch((error) => {
+        responseResult.error(res, error);
+      });
+  },
+  getOrderByCustomer: (req, res) => {
+    orderModel
+      .getOrderByCustomer(req.params)
+      .then((result) => {
+        responseResult.getOrderSuccess(res, result);
       })
       .catch((error) => {
         responseResult.error(res, error);

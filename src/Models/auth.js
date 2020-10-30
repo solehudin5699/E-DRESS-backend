@@ -11,19 +11,19 @@ const authModel = {
       const checkUsername = "SELECT username FROM users WHERE username=?";
       dbConnect.query(checkUsername, [username], (err, data) => {
         if (err) {
-          reject(err);
+          reject({ msg: "Something is wrong" });
         } else if (data.length) {
           reject({ msg: "Username already registered" });
         } else {
           //DO THIS IF USERNAME IS NOT ALREADY
           bycrypt.genSalt(10, (err, salt) => {
             if (err) {
-              reject(err);
+              reject({ msg: "Something is wrong" });
             }
             const { password } = body;
             bycrypt.hash(password, salt, (err, hashedPassword) => {
               if (err) {
-                reject(err);
+                reject({ msg: "Something is wrong" });
               }
               console.log(hashedPassword);
               const newBody = {
@@ -36,7 +36,7 @@ const authModel = {
                   const msg = "Registration is succes";
                   resolve({ msg });
                 } else {
-                  reject(err);
+                  reject({ msg: "Registration is failed" });
                 }
               });
             });
